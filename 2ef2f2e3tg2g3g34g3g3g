@@ -92,14 +92,18 @@ Execute.TextSize = 14.000
 
 local function onExecuteClicked()
     local code = ScriptText.Text
-    local func, err = loadstring(code)
-    if func then
-        local success, runErr = pcall(func)
-        if not success then
-            warn("Error running code: " .. runErr)
-        end
+    if code == "identifyexecutor()" then
+        print("[Pulse Executor] - discord.gg/offsetplug")
     else
-        warn("Error compiling code: " .. err)
+        local func, err = loadstring(code)
+        if func then
+            local success, runErr = pcall(func)
+            if not success then
+                warn("Error running code: " .. runErr)
+            end
+        else
+            warn("Error compiling code: " .. err)
+        end
     end
 end
 
